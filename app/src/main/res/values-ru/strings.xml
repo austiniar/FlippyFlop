@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FlippyFlop</string>
+    <string name="flippy_flop">Шлепка хлоп</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
+    <string name="game_over">Хлопнулась</string>
+    <string name="score">Счет</string>
+</resources>

@@ -1,5 +1,6 @@
 package com.flappies.flippyflop.ui.screens
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -26,6 +26,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
+import androidx.core.os.LocaleListCompat
 import androidx.navigation.NavHostController
 import com.flappies.flippyflop.R
 import com.flappies.flippyflop.ui.Destinations
@@ -83,24 +85,32 @@ fun Menu(
                     tint = MaterialTheme.colorScheme.surfaceVariant
                 )
             }
-            Row(
-
-            ) {
-                Button(
-                    onClick = {
-
+            Row {
+                if (
+                    (AppCompatDelegate.getApplicationLocales()[0]?.language
+                        ?: Locale.current.language) == "ru"
+                )
+                    Button(
+                        onClick = {
+                            AppCompatDelegate.setApplicationLocales(
+                                LocaleListCompat.forLanguageTags("en")
+                            )
+                        }
+                    ) {
+                        Text(text = stringResource(R.string.english))
+                    } else {
+                    Button(
+                        onClick = {
+                            AppCompatDelegate.setApplicationLocales(
+                                LocaleListCompat.forLanguageTags("ru")
+                            )
+                        }
+                    ) {
+                        Text(text = stringResource(R.string.russian))
                     }
-                ) {
-                    Text(text = stringResource(R.string.english))
                 }
-                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.simple_padding)))
-                Button(
-                    onClick = {
 
-                    }
-                ) {
-                    Text(text = stringResource(R.string.russian))
-                }
+                //Spacer(modifier = Modifier.width(dimensionResource(R.dimen.simple_padding)))
             }
 
             Spacer(Modifier.height(dimensionResource(R.dimen.simple_padding) * 2))
